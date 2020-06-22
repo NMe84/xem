@@ -16,12 +16,12 @@
 
 # Assets and user uploads
 /public/assets/
+/public/build/
 /public/media
 
 # PHPUnit
 /phpunit.xml
 
-/build/
 /data
 
 ###> symfony/webpack-encore-pack ###
