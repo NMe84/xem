@@ -1,0 +1,33 @@
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: error
+            handler: nested
+            excluded_http_codes: [403, 404, 410]
+        nested:
+            type: rotating_file
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+            max_files: 31
+        console:
+            type: console
+            process_psr_3_messages: false
+            channels: ["!event", "!doctrine"]
+        mail:
+            type: fingers_crossed
+            action_level: error
+            handler: deduplicated
+            excluded_http_codes: [403, 404, 410]
+        deduplicated:
+            type: deduplication
+            handler: swift
+        swift:
+            type: swift_mailer
+            from_email: '%env(LOG_SENDER_ADDRESS)%'
+            to_email: '%env(DEVELOPER_EMAIL)%'
+            subject: 'Error in %brand_name% (%kernel.environment%)'
+            level: debug
+            formatter: monolog.formatter.html
+            content_type: text/html
+

@@ -1,0 +1,33 @@
+security:
+    providers:
+        user_db:
+            entity:
+                class: App\Entity\User
+                property: email
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        App\Entity\User: bcrypt
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        default:
+            pattern: ^/
+            anonymous: ~
+            provider: user_db
+            remember_me:
+                secret: Y3Oqwe4E2Sz6tTkgThLpy5YDctRyT0lOfASGYS5V
+                always_remember_me: true
+                lifetime: 604800
+            form_login:
+                login_path: login
+            logout:
+                path: logout
+                target: /
+                handlers: [App\Security\FormLoginAuthenticator]
+            guard:
+                authenticators:
+                    - App\Security\FormLoginAuthenticator
+                entry_point: App\Security\FormLoginAuthenticator
+    access_control:
+        - { path: ^/[a-z]+/profile, roles: IS_AUTHENTICATED_REMEMBERED }

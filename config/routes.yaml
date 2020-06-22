@@ -1,0 +1,4 @@
+home:
+    path: /{_locale}/
+    controller: App\Controller\PageController::home
+    defaults: { _locale: '%locale%' }

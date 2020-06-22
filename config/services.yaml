@@ -1,0 +1,24 @@
+parameters:
+    locale: 'en'
+    locales: ['nl', 'en']
+    brand_name: 'The Xross Entity Map'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $allowedLocales: '%locales%'
+            $defaultLocale: '%locale%'
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    App\EventSubscriber\:
+        resource: '../src/EventSubscriber'
+        tags: ['kernel.event_subscriber']

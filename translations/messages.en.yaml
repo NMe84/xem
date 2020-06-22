@@ -1,0 +1,5 @@
+# Roles
+ROLE_USER: User
+ROLE_POWER_USER: Power user
+ROLE_SUPER_USER: Super user
+ROLE_ADMIN: Admin

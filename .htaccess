@@ -6,7 +6,7 @@ RewriteEngine on
 RewriteBase /
 
 # If not on local or test
-RewriteCond %{SERVER_NAME} !\.(local|test)$
+RewriteCond %{SERVER_NAME} !\.(local|localhost|test)$
 # And if there is a www. prefix
 RewriteCond %{SERVER_NAME} ^www\. [OR]
 # Or no HTTPS
