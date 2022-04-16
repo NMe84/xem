@@ -8,19 +8,24 @@ services:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
       - ${WWW_ROOT}:/var/www
     ports:
-      - "127.0.0.1:8030:80"
+      - "127.0.0.1:8095:80"
     links:
       - app
       - phpmyadmin
 
   app:
-    build: .
+    build:
+      context: .
+      args:
+        XDEBUG_ENABLED: 0
     restart: unless-stopped
     volumes:
       - ${WWW_ROOT}:/var/www
     links:
       - mariadb
       - smtp
+    environment:
+      - XDEBUG_ENABLED=0
 
   mariadb:
     image: mariadb:10.7
