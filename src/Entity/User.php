@@ -50,7 +50,7 @@ class User implements UserInterface
     protected string $role;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
-    protected ?bool $active;
+    protected bool $active;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     protected bool $deleted;
@@ -94,9 +94,11 @@ class User implements UserInterface
         return $this->name;
     }
 
-    public function setName(?string $name): void
+    public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
     public function getPassword(): ?string
@@ -104,19 +106,11 @@ class User implements UserInterface
         return $this->password;
     }
 
-    public function setPassword(?string $password): void
+    public function setPassword(string $password): self
     {
         $this->password = $password;
-    }
 
-    public function getPlainTextPassword(): ?string
-    {
-        return $this->plainTextPassword;
-    }
-
-    public function setPlainTextPassword(?string $plainTextPassword): void
-    {
-        $this->plainTextPassword = $plainTextPassword;
+        return $this;
     }
 
     public function getActivationCode(): ?string
@@ -124,9 +118,11 @@ class User implements UserInterface
         return $this->activationCode;
     }
 
-    public function setActivationCode(?string $activationCode): void
+    public function setActivationCode(?string $activationCode): self
     {
         $this->activationCode = $activationCode;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -134,9 +130,11 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(?string $email): void
+    public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
     }
 
     public function getRole(): string
@@ -144,19 +142,23 @@ class User implements UserInterface
         return $this->role;
     }
 
-    public function setRole(string $role): void
+    public function setRole(string $role): self
     {
         $this->role = $role;
+
+        return $this;
     }
 
-    public function getActive(): ?bool
+    public function getActive(): bool
     {
         return $this->active;
     }
 
-    public function setActive(?bool $active): void
+    public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
     }
 
     public function isDeleted(): bool
@@ -164,19 +166,23 @@ class User implements UserInterface
         return $this->deleted;
     }
 
-    public function setDeleted(bool $deleted): void
+    public function setDeleted(bool $deleted): self
     {
         $this->deleted = $deleted;
+
+        return $this;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt($createdAt): void
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
     }
 
     public function getUpdatedAt(): ?DateTimeInterface
@@ -184,9 +190,11 @@ class User implements UserInterface
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     public function getLatestActivity(): ?DateTimeInterface
@@ -194,9 +202,11 @@ class User implements UserInterface
         return $this->latestActivity;
     }
 
-    public function setLatestActivity(?DateTimeInterface $latestActivity): void
+    public function setLatestActivity(?DateTimeInterface $latestActivity): self
     {
         $this->latestActivity = $latestActivity;
+
+        return $this;
     }
 
     public function isPreferenceEmailNewAccounts(): bool
@@ -204,9 +214,11 @@ class User implements UserInterface
         return $this->preferenceEmailNewAccounts;
     }
 
-    public function setPreferenceEmailNewAccounts(bool $preferenceEmailNewAccounts): void
+    public function setPreferenceEmailNewAccounts(bool $preferenceEmailNewAccounts): self
     {
         $this->preferenceEmailNewAccounts = $preferenceEmailNewAccounts;
+
+        return $this;
     }
 
     public function isPreferenceEmailNewShows(): bool
@@ -214,9 +226,11 @@ class User implements UserInterface
         return $this->preferenceEmailNewShows;
     }
 
-    public function setPreferenceEmailNewShows(bool $preferenceEmailNewShows): void
+    public function setPreferenceEmailNewShows(bool $preferenceEmailNewShows): self
     {
         $this->preferenceEmailNewShows = $preferenceEmailNewShows;
+
+        return $this;
     }
 
     public function isPreferenceEmailPublicRequests(): bool
@@ -224,9 +238,11 @@ class User implements UserInterface
         return $this->preferenceEmailPublicRequests;
     }
 
-    public function setPreferenceEmailPublicRequests(bool $preferenceEmailPublicRequests): void
+    public function setPreferenceEmailPublicRequests(bool $preferenceEmailPublicRequests): self
     {
         $this->preferenceEmailPublicRequests = $preferenceEmailPublicRequests;
+
+        return $this;
     }
 
     public function getUserIdentifier(): string
