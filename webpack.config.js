@@ -45,9 +45,9 @@ Encore
     .enableIntegrityHashes(Encore.isProduction())
 
     .copyFiles({
-        from: './assets/media',
+        from: './assets/img',
         // optional target path, relative to the output dir
-        to: Encore.isProduction() ? 'media/[path][name].[hash:8].[ext]' : 'media/[path][name].[ext]',
+        to: Encore.isProduction() ? 'img/[path][name].[hash:8].[ext]' : 'img/[path][name].[ext]',
 
         // only copy files matching this pattern
         pattern: /\.(png|jpg|jpeg|svg)$/
