@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity]
-class MediaType
+class Alias
 {
     #[ORM\Column(type: 'integer', nullable: false)]
     #[ORM\Id]
@@ -29,18 +27,12 @@ class MediaType
     #[Assert\NotBlank]
     protected ?string $name;
 
-    /** @var Collection|MediaSource[] */
-    #[ORM\OneToMany(targetEntity: MediaSource::class, mappedBy: 'type')]
-    protected Collection|array $sources;
+    #[ORM\Column(type: 'string', length: 2, nullable: false)]
+    protected ?string $locale;
 
-    #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
-    protected bool $deleted;
-
-    public function __construct()
-    {
-        $this->sources = new ArrayCollection();
-        $this->deleted = false;
-    }
+    #[ORM\ManyToOne(targetEntity: MappableEntity::class, inversedBy: 'aliases')]
+    #[ORM\JoinColumn(nullable: false)]
+    protected ?MappableEntity $mappedEntity;
 
     public function getId(): ?int
     {
@@ -52,35 +44,33 @@ class MediaType
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function isDeleted(): bool
+    public function getLocale(): ?string
     {
-        return $this->deleted;
+        return $this->locale;
     }
 
-    public function setDeleted(bool $deleted): self
+    public function setLocale(?string $locale): self
     {
-        $this->deleted = $deleted;
+        $this->locale = $locale;
 
         return $this;
     }
 
-    /** @return Collection|MediaSource[] */
-    public function getSources(): Collection|array
+    public function getMappedEntity(): ?MappableEntity
     {
-        return $this->sources;
+        return $this->mappedEntity;
     }
 
-    /** @param $sources Collection|MediaSource[] */
-    public function setSources(Collection|array $sources): self
+    public function setMappedEntity(MappableEntity $mappedEntity): self
     {
-        $this->sources = $sources;
+        $this->mappedEntity = $mappedEntity;
 
         return $this;
     }
