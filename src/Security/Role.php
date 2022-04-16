@@ -14,10 +14,10 @@ namespace App\Security;
 
 class Role
 {
-    const USER = 'ROLE_USER';
-    const POWER_USER = 'ROLE_POWER_USER';
-    const SUPER_USER = 'ROLE_SUPER_USER';
-    const ADMIN = 'ROLE_ADMIN';
+    public const USER = 'ROLE_USER';
+    public const POWER_USER = 'ROLE_POWER_USER';
+    public const SUPER_USER = 'ROLE_SUPER_USER';
+    public const ADMIN = 'ROLE_ADMIN';
 
     /**
      * Fetch the list of assignable user roles in ascending order of permissions.

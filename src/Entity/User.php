@@ -14,8 +14,6 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use App\Security\Role;
-use DateTime;
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -56,13 +54,13 @@ class User implements UserInterface
     protected bool $deleted;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
-    protected ?DateTimeInterface $createdAt;
+    protected ?\DateTimeInterface $createdAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    protected ?DateTimeInterface $updatedAt;
+    protected ?\DateTimeInterface $updatedAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    protected ?DateTimeInterface $latestActivity;
+    protected ?\DateTimeInterface $latestActivity;
 
     #[ORM\Column(type: 'boolean', nullable: false, options: ['default' => false])]
     protected bool $preferenceEmailNewAccounts;
@@ -78,7 +76,7 @@ class User implements UserInterface
         $this->role = Role::USER;
         $this->active = false;
         $this->deleted = false;
-        $this->createdAt = new DateTime();
+        $this->createdAt = new \DateTimeImmutable();
         $this->preferenceEmailNewAccounts = false;
         $this->preferenceEmailNewShows = false;
         $this->preferenceEmailPublicRequests = false;
@@ -185,24 +183,24 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getUpdatedAt(): ?DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getLatestActivity(): ?DateTimeInterface
+    public function getLatestActivity(): ?\DateTimeInterface
     {
         return $this->latestActivity;
     }
 
-    public function setLatestActivity(?DateTimeInterface $latestActivity): self
+    public function setLatestActivity(?\DateTimeInterface $latestActivity): self
     {
         $this->latestActivity = $latestActivity;
 

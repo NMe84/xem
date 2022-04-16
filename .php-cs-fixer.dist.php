@@ -19,6 +19,7 @@ file that was distributed with this source code.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
+    ->in(['src', 'tests'])
     ->files()
     ->name('*.php')
 ;
