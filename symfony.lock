@@ -182,6 +182,9 @@
             "config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "symfony/amqp-messenger": {
+        "version": "v6.0.7"
+    },
     "symfony/asset": {
         "version": "v6.0.7"
     },
